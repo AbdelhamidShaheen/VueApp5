@@ -83,7 +83,7 @@
 
 
 <script>
-
+import { LOGIN } from "../store/types/actions_types";
 export default {
 
     data() {
@@ -93,9 +93,16 @@ export default {
     },
     methods: {
         submit: function () {
-            this.$router.replace({
-                name: "home"
-            });
+
+            this.$store.dispatch(LOGIN).then(
+                (value) => {
+                    this.$router.push({ name: "home" })
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+
         }
     }
 
